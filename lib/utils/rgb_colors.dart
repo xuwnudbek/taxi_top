@@ -1,0 +1,9 @@
+import 'package:flutter/material.dart';
+
+class RGBColors {
+  static const primaryColor = Color(0xFF2d343c);
+  static const secondaryColor = Color(0xFFFfc219);
+  static const textColor = Color(0xFFffffff);
+  static const grey = Color(0xFF434b58);
+  static const transparent = Colors.transparent;
+}
