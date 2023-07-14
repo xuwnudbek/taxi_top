@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/home/home.dart';
+import 'package:taxi_top/pages/home/provider/home_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
+import 'package:taxi_top/utils/widgets/custom_navbar/provider/navbar_provider.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,7 +15,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Foo-Bar',
       theme: ThemeData(
@@ -26,7 +30,7 @@ class MainApp extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           bodyMedium: TextStyle(
-            color: RGBColors.textColor,
+            color: RGBColors.lightColor,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -39,7 +43,14 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Home(),
+      home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => HomeProvider()),
+            ChangeNotifierProvider(create: (context) => NavbarProvider()),
+          ],
+          builder: (context, snapshot) {
+            return Home();
+          }),
     );
   }
 }

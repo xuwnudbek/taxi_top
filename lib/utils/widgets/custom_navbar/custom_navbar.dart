@@ -1,55 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:taxi_top/pages/home/provider/home_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
+import 'package:taxi_top/utils/widgets/custom_navbar/provider/navbar_provider.dart';
 
 class CustomNavbar extends StatelessWidget {
   CustomNavbar({super.key});
 
-  List<Map<String, dynamic>> buttons = [
-    {
-      'activeIcon': 'assets/images/home-in.svg',
-      'unActiveIcon': 'assets/images/home.svg',
-      'label': 'Home',
-    },
-    {
-      'icon': 'assets/images/heart-in.svg',
-      'iconActive': 'assets/images/heart.svg',
-      'label': 'Favoritos',
-    },
-    {
-      'icon': 'assets/images/user-in.svg',
-      'iconActive': 'assets/images/user.svg',
-      'label': 'Perfil',
-    },
-  ];
-
-  /*
-  Expanded(
-    child: MaterialButton(
-      onPressed: () {},
-      child: SvgPicture.asset(
-        'assets/images/home-in.svg',
-        width: 35,
-      ),
-    ),
-  ),
-  */
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(15),
-      child: Container(
-        decoration: BoxDecoration(
-          color: RGBColors.secondaryColor,
-          borderRadius: BorderRadius.circular(20),
+    return Consumer<NavbarProvider>(builder: (context, provider, _) {
+      return Padding(
+        padding: EdgeInsets.all(15),
+        child: Container(
+          decoration: BoxDecoration(
+            color: RGBColors.secondaryColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // padding: EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            children: provider.buttons.map((button) => _buildButton(button)).toList(),
+          ),
         ),
-        padding: EdgeInsets.symmetric(vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [],
+      );
+    });
+  }
+
+  Widget _buildButton(Map button) {
+    var value = button['value'];
+
+    return Consumer<HomeProvider>(builder: (ctx, homeProvider, _) {
+      return Expanded(
+        child: Container(
+          margin: EdgeInsets.all(5),
+          padding: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            color: homeProvider.currentIndex == value ? RGBColors.lightColor : RGBColors.transparent,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: MaterialButton(
+            highlightColor: RGBColors.transparent,
+            splashColor: RGBColors.transparent,
+            onPressed: () {
+              homeProvider.changeIndex = value;
+            },
+            child: SvgPicture.asset(
+              button['activeIcon'],
+              color: RGBColors.primaryColor,
+              width: 40,
+            ),
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

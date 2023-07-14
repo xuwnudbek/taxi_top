@@ -9,24 +9,21 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<HomeProvider>(
-        create: (context) => HomeProvider(),
-        builder: (context, child) {
-          return Consumer<HomeProvider>(builder: (context, homeProvider, _) {
-            return Scaffold(
-              appBar: AppBar(
+    return Consumer<HomeProvider>(builder: (context, homeProvider, _) {
+      return Scaffold(
+        appBar: homeProvider.currentIndex == 2
+            ? null
+            : AppBar(
                 backgroundColor: RGBColors.transparent,
                 title: Text(
-                  'Foo App',
+                  '${homeProvider.titles[homeProvider.currentIndex]}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
+                centerTitle: true,
               ),
-              body: Center(
-                child: Text('Home'),
-              ),
-              bottomNavigationBar: CustomNavbar(),
-            );
-          });
-        });
+        body: homeProvider.pages[homeProvider.currentIndex],
+        bottomNavigationBar: CustomNavbar(),
+      );
+    });
   }
 }
