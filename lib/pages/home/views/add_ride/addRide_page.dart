@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+class AddRide extends StatelessWidget {
+  const AddRide({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Menu'),
+      child: Text('Add Ride'),
     );
   }
 }

@@ -8,7 +8,7 @@ class NavbarProvider extends ChangeNotifier {
       "value": 0,
     },
     {
-      'activeIcon': 'assets/images/home.svg',
+      'activeIcon': 'assets/images/add.svg',
       'label': 'Home',
       "value": 1,
     },
