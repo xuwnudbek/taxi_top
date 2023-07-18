@@ -21,7 +21,9 @@ class Home extends StatelessWidget {
                 ),
                 centerTitle: true,
               ),
-        body: homeProvider.pages[homeProvider.currentIndex],
+        body: SafeArea(
+          child: homeProvider.pages[homeProvider.currentIndex],
+        ),
         bottomNavigationBar: CustomNavbar(),
       );
     });

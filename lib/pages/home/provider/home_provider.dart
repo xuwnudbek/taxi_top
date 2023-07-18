@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taxi_top/pages/home/views/add_ride/addRide_page.dart';
 import 'package:taxi_top/pages/home/views/rides/rides_page.dart';
 import 'package:taxi_top/pages/home/views/profile/profile_page.dart';
 
 class HomeProvider extends ChangeNotifier {
   List<String> titles = [
-    'Rides',
-    'Add Ride',
-    'Profile',
+    'rides'.tr,
+    'add_ride'.tr,
+    'profile'.tr,
   ];
   List<Widget> pages = [
     RidesPage(),

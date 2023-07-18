@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:taxi_top/controller/language/language.dart';
 import 'package:taxi_top/pages/home/home.dart';
 import 'package:taxi_top/pages/home/provider/home_provider.dart';
+import 'package:taxi_top/pages/home/views/add_ride/provider/addRide_provider.dart';
+import 'package:taxi_top/pages/home/views/profile/provider/profile_provider.dart';
+import 'package:taxi_top/pages/home/views/rides/provider/rides_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/custom_navbar/provider/navbar_provider.dart';
 
@@ -18,6 +22,8 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Foo-Bar',
+      translations: Messages(),
+      locale: Locale('uz', 'UZ'),
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: RGBColors.primaryColor,
@@ -47,6 +53,10 @@ class MainApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(create: (context) => HomeProvider()),
             ChangeNotifierProvider(create: (context) => NavbarProvider()),
+            //views
+            ChangeNotifierProvider(create: (context) => RidesProvider()),
+            ChangeNotifierProvider(create: (context) => AddRideProvider()),
+            ChangeNotifierProvider(create: (context) => ProfileProvider()),
           ],
           builder: (context, snapshot) {
             return Home();

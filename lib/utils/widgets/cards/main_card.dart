@@ -1,34 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:taxi_top/pages/home/views/rides/provider/rides_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 
-class RidesPage extends StatelessWidget {
-  const RidesPage({super.key});
+class MainCard extends StatelessWidget {
+  const MainCard({super.key, required this.ride});
+
+  final Map<String, dynamic> ride;
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RidesProvider>(
-      create: (context) => RidesProvider(),
-      builder: (context, snapshot) {
-        return Consumer<RidesProvider>(
-          builder: (context, ridesProvider, _) {
-            return Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: ridesProvider.rides.map((e) => _buildRideCard(e)).toList(),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildRideCard(ride) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: RGBColors.grey,
@@ -38,7 +19,6 @@ class RidesPage extends StatelessWidget {
         children: [
           Container(
             width: 120,
-            height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
