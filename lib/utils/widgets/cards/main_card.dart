@@ -18,26 +18,30 @@ class MainCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 120,
+            width: 100,
+            height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Image.network(
-              ride['car'].photo,
-              fit: BoxFit.cover,
-              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) => ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: child,
+            child: Hero(
+              tag: "${ride['id']}_image",
+              child: Image.network(
+                ride['car'].photo,
+                fit: BoxFit.cover,
+                frameBuilder: (context, child, frame, wasSynchronouslyLoaded) => ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: child,
+                ),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+                      color: RGBColors.secondaryColor,
+                    ),
+                  );
+                },
               ),
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
-                    color: RGBColors.lightColor,
-                  ),
-                );
-              },
             ),
           ),
           SizedBox(width: 10),
@@ -46,11 +50,14 @@ class MainCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '⛳️ ${ride['from']} - ${ride['to']}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                Hero(
+                  tag: "${ride['id']}_title",
+                  child: Text(
+                    '⛳️ ${ride['from']} - ${ride['to']}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(height: 5),

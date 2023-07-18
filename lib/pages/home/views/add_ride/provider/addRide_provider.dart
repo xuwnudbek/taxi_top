@@ -85,9 +85,24 @@ class AddRideProvider extends ChangeNotifier {
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
     },
+    {
+      "id": 6,
+      "from": "Farg'ona",
+      "to": "Xorazm",
+      "time": "03:00",
+      "price": 170000,
+      "seats": 3,
+      "car": Car.fromJson({
+        "id": 1,
+        "model": "Nexi 3",
+        "color": "Oq",
+        "number": "01 A 987 AA",
+        "year": 2021,
+        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+      }),
+    },
   ];
 
-  
   List<String> categories = [
     "today".tr,
     "this_week".tr,
@@ -100,4 +115,7 @@ class AddRideProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  refresh() async {
+    await Future.delayed(Duration(seconds: 1));
+  }
 }

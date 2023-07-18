@@ -12,7 +12,7 @@ class CustomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<NavbarProvider>(builder: (context, provider, _) {
       return Padding(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.only(left: 15, bottom: 15, right: 15),
         child: Container(
           decoration: BoxDecoration(
             color: RGBColors.secondaryColor,

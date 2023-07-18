@@ -21,9 +21,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Foo-Bar',
+      title: 'Taxi-Top',
       translations: Messages(),
-      locale: Locale('uz', 'UZ'),
+      locale: Locale('ru', 'RU'),
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: RGBColors.primaryColor,
@@ -32,7 +32,12 @@ class MainApp extends StatelessWidget {
         textTheme: TextTheme(
           titleMedium: TextStyle(
             color: RGBColors.secondaryColor,
-            fontSize: 24,
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+          ),
+          titleSmall: TextStyle(
+            color: RGBColors.secondaryColor,
+            fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
           bodyMedium: TextStyle(
