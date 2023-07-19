@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/about_ride/provider/about_ride_provider.dart';
+import 'package:taxi_top/utils/cp_indicator.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/buttons/back_buttonx.dart';
 
@@ -13,42 +14,77 @@ class AboutRide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AboutRideProvider>(
-        create: (context) => AboutRideProvider(),
-        builder: (context, snapshot) {
-          var ride = Provider.of<AboutRideProvider>(context).ride;
+      create: (context) => AboutRideProvider(rideId),
+      builder: (context, snapshot) {
+        var ride = Provider.of<AboutRideProvider>(context).ride;
+        var isLoading = Provider.of<AboutRideProvider>(context).isLoading;
 
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: RGBColors.transparent,
-              leading: BackButtonX(),
-              title: Hero(
-                tag: "${ride['id']}_title",
-                child: Text(
-                  "${ride['from']} - ${ride['to']}",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              centerTitle: true,
-            ),
-            body: Flex(
-              direction: Axis.vertical,
-              children: [
-                //Image with slider
-                Flexible(
-                  child: Container(
-                    color: RGBColors.grey,
-                    child: Hero(
-                      tag: "${ride['id']}_image",
-                      child: Image.network(
-                        "${ride['car'].photo}",
-                        fit: BoxFit.cover,
-                      ),
+        return isLoading
+            ? CPIndicator()
+            : Scaffold(
+                appBar: AppBar(
+                  backgroundColor: RGBColors.transparent,
+                  leading: BackButtonX(),
+                  title: Hero(
+                    tag: "${ride['id']}_title",
+                    child: Text(
+                      "${ride['from']} - ${ride['to']}",
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
+                  centerTitle: true,
                 ),
-              ],
-            ),
-          );
-        });
+                body: Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    //Image with slider
+                    Flexible(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: RGBColors.grey,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          constraints: BoxConstraints(maxHeight: 300),
+                          margin: EdgeInsets.all(10),
+                          child: Hero(
+                            tag: "${ride['id']}_image",
+                            child: Image.network(
+                              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: child,
+                                );
+                              },
+                              loadingBuilder: (context, child, loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                } else {
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: CPIndicator(),
+                                  );
+                                }
+                              },
+                              "${ride['car'].photo}",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Row(
+                        children: [
+                          Text("ride".tr),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+      },
+    );
   }
 }
