@@ -10,4 +10,8 @@ const Map<String, String> ru = {
   "this_week": "На этой неделе",
   "this_month": "В этом месяце",
   "all": "Все",
+
+  //About Ride Page
+  "about_ride": "О поездке",
+  "about_rider": "О водителе",
 };

@@ -5,6 +5,7 @@ import 'package:taxi_top/pages/about_ride/provider/about_ride_provider.dart';
 import 'package:taxi_top/utils/cp_indicator.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/buttons/back_buttonx.dart';
+import 'package:taxi_top/utils/widgets/cards/main_rider_card.dart';
 
 class AboutRide extends StatelessWidget {
   AboutRide(this.rideId, {super.key});
@@ -75,10 +76,31 @@ class AboutRide extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      child: Row(
-                        children: [
-                          Text("ride".tr),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text("about_rider".tr),
+                              ],
+                            ),
+                            SizedBox(height: 5),
+                            MainRiderCard(
+                              isAsset: ride['rider']['photo'] == null ? true : false,
+                              elevation: 0,
+                              rider: ride['rider'],
+                              size: Size(Get.width, 80),
+                              padding: EdgeInsets.all(5),
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Text("about_ride".tr),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

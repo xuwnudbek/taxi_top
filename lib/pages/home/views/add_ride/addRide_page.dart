@@ -9,7 +9,7 @@ import 'package:taxi_top/pages/about_ride/about_ride.dart';
 import 'package:taxi_top/pages/home/views/add_ride/provider/addRide_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/buttons/main_button.dart';
-import 'package:taxi_top/utils/widgets/cards/main_card.dart';
+import 'package:taxi_top/utils/widgets/cards/main_ride_card.dart';
 
 class AddRide extends StatelessWidget {
   const AddRide({super.key});
@@ -122,7 +122,7 @@ class AddRide extends StatelessWidget {
             transition: Transition.native,
             duration: Duration(milliseconds: 300),
           ),
-          child: MainCard(
+          child: MainRideCard(
             ride: ride,
           ),
         ),

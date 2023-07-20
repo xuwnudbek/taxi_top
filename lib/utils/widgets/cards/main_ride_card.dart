@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 
-class MainCard extends StatelessWidget {
-  const MainCard({super.key, required this.ride});
+class MainRideCard extends StatelessWidget {
+  const MainRideCard({super.key, required this.ride});
 
   final Map<String, dynamic> ride;
 

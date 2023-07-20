@@ -10,4 +10,7 @@ const Map<String, String> uz = {
   "this_week": "Bu hafta",
   "this_month": "Bu oy",
   "all": "Hammasi",
+
+  //About Ride Page
+  "about_ride": "Safar haqida",
 };

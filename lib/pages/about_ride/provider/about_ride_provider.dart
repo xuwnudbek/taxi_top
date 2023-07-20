@@ -17,8 +17,15 @@ class AboutRideProvider extends ChangeNotifier {
         "color": "Oq",
         "number": "01 A 123 AA",
         "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        "photo": null,
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": "assets/images/person.png",
+      }
     },
     {
       "id": 2,
@@ -35,6 +42,13 @@ class AboutRideProvider extends ChangeNotifier {
         "year": 2015,
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": null,
+      }
     },
     {
       "id": 3,
@@ -51,6 +65,13 @@ class AboutRideProvider extends ChangeNotifier {
         "year": 2015,
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": null,
+      }
     },
     {
       "id": 4,
@@ -67,6 +88,13 @@ class AboutRideProvider extends ChangeNotifier {
         "year": 2015,
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": null,
+      }
     },
     {
       "id": 5,
@@ -83,6 +111,13 @@ class AboutRideProvider extends ChangeNotifier {
         "year": 2015,
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": null,
+      }
     },
     {
       "id": 6,
@@ -99,6 +134,13 @@ class AboutRideProvider extends ChangeNotifier {
         "year": 2021,
         "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
       }),
+      "rider": {
+        "id": 1,
+        "name": "Abdulaziz",
+        "surname": "Abdulazizov",
+        "phone": "+998 99 999 99 99",
+        "photo": null,
+      }
     },
   ];
 
