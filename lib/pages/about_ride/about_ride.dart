@@ -75,6 +75,7 @@ class AboutRide extends StatelessWidget {
                         ),
                       ),
                     ),
+                    //About Rider
                     Flexible(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
@@ -90,7 +91,7 @@ class AboutRide extends StatelessWidget {
                               isAsset: ride['rider']['photo'] == null ? true : false,
                               elevation: 0,
                               rider: ride['rider'],
-                              size: Size(Get.width, 80),
+                              size: Size(Get.width, 100),
                               padding: EdgeInsets.all(5),
                             ),
                             SizedBox(height: 10),

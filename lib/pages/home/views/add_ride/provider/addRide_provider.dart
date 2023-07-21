@@ -25,6 +25,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -48,6 +49,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -71,6 +73,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -94,6 +97,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -117,6 +121,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -140,6 +145,7 @@ class AddRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },

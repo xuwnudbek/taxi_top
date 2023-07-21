@@ -16,7 +16,7 @@ class HomeProvider extends ChangeNotifier {
     ProfilePage(),
   ];
 
-  int currentIndex = 1;
+  int currentIndex = 0;
 
   set changeIndex(int index) {
     currentIndex = index;

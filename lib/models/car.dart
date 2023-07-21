@@ -4,7 +4,7 @@ class Car {
   String color;
   String number;
   int year;
-  String photo;
+  String? photo;
 
   Car({
     required this.id,
@@ -26,3 +26,16 @@ class Car {
     );
   }
 }
+
+
+/*
+"car": Car.fromJson({
+  "id": 1,
+  "model": "Chevrolet",
+  "name": "Lacetti 3",
+  "color": "Oq",
+  "number": "01 A 123 AA",
+  "year": 2015,
+  "photo": null,
+}),
+*/

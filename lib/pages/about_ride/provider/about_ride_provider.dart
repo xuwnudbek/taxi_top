@@ -13,8 +13,8 @@ class AboutRideProvider extends ChangeNotifier {
       "car": Car.fromJson({
         "id": 1,
         "model": "Chevrolet",
-        "name": "Lacetti 3",
         "color": "Oq",
+        "name": "Lacetti 3",
         "number": "01 A 123 AA",
         "year": 2015,
         "photo": null,
@@ -24,6 +24,7 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": "assets/images/person.png",
       }
     },
@@ -47,6 +48,8 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
+
         "photo": null,
       }
     },
@@ -70,6 +73,7 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -93,6 +97,7 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -116,6 +121,7 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
@@ -139,6 +145,7 @@ class AboutRideProvider extends ChangeNotifier {
         "name": "Abdulaziz",
         "surname": "Abdulazizov",
         "phone": "+998 99 999 99 99",
+        "star": 3.5,
         "photo": null,
       }
     },
