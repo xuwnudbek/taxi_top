@@ -15,21 +15,30 @@ class MainButton extends StatelessWidget {
   double height;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: () => onTap(),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 5,
+    return Container(
       height: height,
-      color: Theme.of(context).cardTheme.color,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: child,
-          ),
-        ],
+      margin: EdgeInsets.all(10),
+      child: MaterialButton(
+        onPressed: () => onTap(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        elevation: 5,
+        height: height,
+        color: Theme.of(context).cardTheme.color,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: title != null
+                  ? Text(
+                      title!,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  : child,
+            ),
+          ],
+        ),
       ),
     );
   }

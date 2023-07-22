@@ -72,8 +72,7 @@ class MainRiderCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${rider['phone']}",
@@ -93,17 +92,6 @@ class MainRiderCard extends StatelessWidget {
                         starSpacing: 0,
                         onValueChanged: (value) {},
                         starSize: 17,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      MainCircleBtn(
-                        onPressed: () {
-                          MainFunc.call(rider["phone"]);
-                        },
-                        child: Icon(Icons.call_rounded),
                       ),
                     ],
                   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RidesProvider extends ChangeNotifier {
+class AboutMyRideProvider extends ChangeNotifier {
   List<Map<String, dynamic>> rideList = [
     {
       "id": 1,
@@ -166,4 +166,24 @@ class RidesProvider extends ChangeNotifier {
       }
     },
   ];
+
+  Map<String, dynamic> ride = {};
+
+  int rideId;
+  bool isLoading = false;
+
+  AboutMyRideProvider(this.rideId) {
+    getRide(rideId);
+  }
+
+  getRide(int id) async {
+    isLoading = true;
+    notifyListeners();
+
+    await Future.delayed(Duration(milliseconds: 700));
+    ride = rideList.firstWhere((element) => element["id"] == id);
+
+    isLoading = false;
+    notifyListeners();
+  }
 }

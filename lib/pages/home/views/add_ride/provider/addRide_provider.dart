@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taxi_top/models/car.dart';
 
 class AddRideProvider extends ChangeNotifier {
   List<Map<String, dynamic>> rideList = [
@@ -11,15 +10,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "10:00",
       "price": 100000,
       "seats": 4,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Chevrolet",
-        "name": "Lacetti 3",
-        "color": "Oq",
-        "number": "01 A 123 AA",
-        "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -27,6 +19,16 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Chevrolet Spark 4",
+          "color": "Oq",
+          "name": "Lacetti 3",
+          "number": "01 A 123 AA",
+          "year": 2015,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
     {
@@ -36,14 +38,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "12:00",
       "price": 100000,
       "seats": 4,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Nexia 3",
-        "color": "Oq",
-        "number": "01 A 123 AA",
-        "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -51,6 +47,15 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Nexia 3",
+          "color": "Oq",
+          "number": "01 A 123 AA",
+          "year": 2015,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
     {
@@ -60,14 +65,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "14:00",
       "price": 100000,
       "seats": 4,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Lacetti 3",
-        "color": "Oq",
-        "number": "01 A 123 AA",
-        "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -75,6 +74,15 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Lacetti 3",
+          "color": "Oq",
+          "number": "01 A 123 AA",
+          "year": 2015,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
     {
@@ -84,14 +92,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "22:00",
       "price": 100000,
       "seats": 4,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Lacetti 3",
-        "color": "Oq",
-        "number": "01 A 123 AA",
-        "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -99,6 +101,15 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Lacetti 3",
+          "color": "Oq",
+          "number": "01 A 123 AA",
+          "year": 2015,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
     {
@@ -108,14 +119,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "01:00",
       "price": 200000,
       "seats": 2,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Lacetti 3",
-        "color": "Oq",
-        "number": "01 A 123 AA",
-        "year": 2015,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -123,6 +128,15 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Lacetti 3",
+          "color": "Oq",
+          "number": "01 A 123 AA",
+          "year": 2015,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
     {
@@ -132,14 +146,8 @@ class AddRideProvider extends ChangeNotifier {
       "time": "03:00",
       "price": 170000,
       "seats": 3,
-      "car": Car.fromJson({
-        "id": 1,
-        "model": "Nexi 3",
-        "color": "Oq",
-        "number": "01 A 987 AA",
-        "year": 2021,
-        "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
-      }),
+      "date":
+          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -147,6 +155,15 @@ class AddRideProvider extends ChangeNotifier {
         "phone": "+998 99 999 99 99",
         "star": 3.5,
         "photo": null,
+        "car": {
+          "id": 1,
+          "model": "Nexi 3",
+          "color": "Oq",
+          "number": "01 A 987 AA",
+          "year": 2021,
+          "photo":
+              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+        },
       }
     },
   ];

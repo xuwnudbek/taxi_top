@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:taxi_top/pages/about_ride/about_ride.dart';
+import 'package:taxi_top/pages/about_my_ride/about_my_ride.dart';
+import 'package:taxi_top/pages/add_my_ride/add_my_ride.dart';
 import 'package:taxi_top/pages/home/views/add_ride/provider/addRide_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/buttons/main_button.dart';
@@ -36,7 +37,9 @@ class AddRide extends StatelessWidget {
                 color: Theme.of(context).textTheme.bodyMedium!.color,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.to(() => AddMyRide());
+            },
           ),
           //Show my ride list
           Flexible(
@@ -51,7 +54,8 @@ class AddRide extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text("my_rides".tr),
-                        Consumer<AddRideProvider>(builder: (context, provider, _) {
+                        Consumer<AddRideProvider>(
+                            builder: (context, provider, _) {
                           return _dropDown(
                             categories,
                             value: provider.categoryIndex,
@@ -65,7 +69,8 @@ class AddRide extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 9,
-                    child: Consumer<AddRideProvider>(builder: (context, provider, _) {
+                    child: Consumer<AddRideProvider>(
+                        builder: (context, provider, _) {
                       return RefreshIndicator(
                         displacement: 7,
                         child: _buildRideList(rideList),
@@ -84,7 +89,8 @@ class AddRide extends StatelessWidget {
     );
   }
 
-  DropdownButton _dropDown(List<String> categories, {required int value, required Function onChange}) {
+  DropdownButton _dropDown(List<String> categories,
+      {required int value, required Function onChange}) {
     return DropdownButton(
       borderRadius: BorderRadius.circular(10),
       dropdownColor: RGBColors.grey,

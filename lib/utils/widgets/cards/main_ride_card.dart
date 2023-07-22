@@ -26,9 +26,10 @@ class MainRideCard extends StatelessWidget {
             child: Hero(
               tag: "${ride['id']}_image",
               child: Image.network(
-                ride['car'].photo,
+                ride['rider']['car']['photo'],
                 fit: BoxFit.cover,
-                frameBuilder: (context, child, frame, wasSynchronouslyLoaded) => ClipRRect(
+                frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
+                    ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: child,
                 ),
@@ -36,7 +37,10 @@ class MainRideCard extends StatelessWidget {
                   if (loadingProgress == null) return child;
                   return Center(
                     child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
                       color: RGBColors.secondaryColor,
                     ),
                   );

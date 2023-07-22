@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/home/provider/home_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
+import 'package:taxi_top/utils/widgets/appbar_x.dart';
 import 'package:taxi_top/utils/widgets/custom_navbar/custom_navbar.dart';
 
 class Home extends StatelessWidget {
@@ -13,13 +14,13 @@ class Home extends StatelessWidget {
       return Scaffold(
         appBar: homeProvider.currentIndex == 2
             ? null
-            : AppBar(
-                backgroundColor: RGBColors.transparent,
+            : AppBarX(
                 title: Text(
                   '${homeProvider.titles[homeProvider.currentIndex]}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                centerTitle: true,
+                isCenter: true,
+                haveBack: false,
               ),
         body: SafeArea(
           child: homeProvider.pages[homeProvider.currentIndex],
