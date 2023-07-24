@@ -11,6 +11,9 @@ const Map<String, String> ru = {
   "this_month": "В этом месяце",
   "all": "Все",
 
+  //Add My Ride Page
+  "ride_details": "Ride details",
+
   //About Ride Page
   "about_ride": "О поездке",
   "about_rider": "О водителе",
@@ -24,7 +27,7 @@ const Map<String, String> ru = {
   "seats": "Места",
   "edit_ride": "Изменить поездку",
 
-//regions
+  //regions
   "qoraqalpogiston": "Qoraqalpog‘iston",
   "andijon": "Andijon",
   "buxoro": "Buxoro",

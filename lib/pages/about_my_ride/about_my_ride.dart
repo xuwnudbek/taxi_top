@@ -45,8 +45,7 @@ class AboutRide extends StatelessWidget {
                 ),
                 body: SingleChildScrollView(
                   child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                     child: Column(
                       children: [
                         //Image later may be with slider
@@ -59,15 +58,13 @@ class AboutRide extends StatelessWidget {
                           child: Hero(
                             tag: "${ride['id']}_image",
                             child: Image.network(
-                              frameBuilder: (context, child, frame,
-                                  wasSynchronouslyLoaded) {
+                              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: child,
                                 );
                               },
-                              loadingBuilder:
-                                  (context, child, loadingProgress) {
+                              loadingBuilder: (context, child, loadingProgress) {
                                 if (loadingProgress == null) {
                                   return child;
                                 } else {
@@ -77,7 +74,7 @@ class AboutRide extends StatelessWidget {
                                   );
                                 }
                               },
-                              "${ride['car']['photo']}",
+                              "${ride['rider']['car']['photo']}",
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -95,8 +92,7 @@ class AboutRide extends StatelessWidget {
                               ),
                             ),
                             MainRiderCard(
-                              isAsset:
-                                  ride['rider']['photo'] == null ? true : false,
+                              isAsset: ride['rider']['photo'] == null ? true : false,
                               elevation: 0,
                               rider: ride['rider'],
                               size: Size(Get.width, 100),
@@ -128,9 +124,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "from".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['from']}"),
@@ -141,9 +135,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "to".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['to']}"),
@@ -154,9 +146,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "date".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['date']}"),
@@ -167,9 +157,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "time".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['time']}"),
@@ -180,9 +168,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "price".tr + " (so'm)",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['price']}"),
@@ -193,9 +179,7 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "seats".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
                                       Text("${ride['seats']}"),
@@ -206,12 +190,10 @@ class AboutRide extends StatelessWidget {
                                     children: [
                                       Text(
                                         "car".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                       Spacer(),
-                                      Text("${ride['car']['model']}"),
+                                      Text("${ride['rider']['car']['model']}"),
                                     ],
                                   ),
                                   _customDivider(),

@@ -23,13 +23,14 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Taxi-Top',
       translations: Messages(),
-      locale: Locale('ru', 'RU'),
+      locale: Locale('uz', 'UZ'),
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: RGBColors.primaryColor,
         fontFamily: "taxitop-m",
         scaffoldBackgroundColor: RGBColors.primaryColor,
         textTheme: TextTheme(
+          //title text theme
           titleMedium: TextStyle(
             color: RGBColors.secondaryColor,
             fontSize: 22,
@@ -38,8 +39,9 @@ class MainApp extends StatelessWidget {
           titleSmall: TextStyle(
             color: RGBColors.secondaryColor,
             fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
+          //body text theme
           bodyMedium: TextStyle(
             color: RGBColors.lightColor,
             fontSize: 18,
@@ -48,7 +50,7 @@ class MainApp extends StatelessWidget {
           bodySmall: TextStyle(
             color: RGBColors.lightColor,
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
           ),
         ),
         cardTheme: CardTheme(

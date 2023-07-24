@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:taxi_top/utils/function/main_function.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
-import 'package:taxi_top/utils/widgets/asset_image_card.dart';
+import 'package:taxi_top/utils/widgets/cards/asset_image_card.dart';
 import 'package:taxi_top/utils/widgets/buttons/main_circle_button.dart';
-import 'package:taxi_top/utils/widgets/network_image_card.dart';
+import 'package:taxi_top/utils/widgets/cards/network_image_card.dart';
 
 class MainRiderCard extends StatelessWidget {
   MainRiderCard({

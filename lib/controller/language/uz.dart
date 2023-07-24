@@ -11,6 +11,9 @@ const Map<String, String> uz = {
   "this_month": "Bu oy",
   "all": "Hammasi",
 
+  //Add My Ride Page
+  "ride_details": "Ride details",
+
   //About Ride Page
   "about_ride": "Safar haqida",
   "about_rider": "Haydovchi haqida",
