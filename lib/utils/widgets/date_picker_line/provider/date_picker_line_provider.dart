@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DatePickerLineProvider extends ChangeNotifier {
   var now = DateTime.now();
+
+  DatePickerLineProvider() {
+    setDaysRange();
+    selectedDate = daysRange[0];
+    setHoursRange();
+  }
 
   //Date
   List<int> daysRange = [];
@@ -33,31 +40,60 @@ class DatePickerLineProvider extends ChangeNotifier {
   set selectedDate(value) {
     _selectedDate = value;
     notifyListeners();
+    setHoursRange();
   }
 
   //Time
   List<int> hoursRange = [];
+  List<int> minutesRange = [0, 15, 30, 45];
   setHoursRange() {
+    hoursRange.clear();
     var currentHour = now.hour;
-    var n = 24 - currentHour;
-    var m = 24 - n;
+    var to24 = 24 - currentHour;
 
-    for (var i = 0; i < n; i++) {
-      hoursRange.add(currentHour + i);
+    if (selectedDate != now.day) {
+      hoursRange = List.generate(24, (index) => index);
+    } else {
+      if (selectedHour == now.day && minutesRange.firstWhereOrNull((element) => selectedMinute > element) == null) {
+        hoursRange = List.generate(24, (index) => index);
+      } else {
+        for (var i = 0; i < to24; i++) {
+          hoursRange.add(currentHour + i);
+        }
+      }
     }
-
-    print(hoursRange);
+    notifyListeners();
+    initTime();
   }
 
-  get selectedTime => "$hour:$minute";
-  var hour;
-  var minute;
+  var _selectedHour;
+  get selectedHour => _selectedHour;
+  set selectedHour(value) {
+    _selectedHour = value;
+    notifyListeners();
+  }
 
-  DatePickerLineProvider() {
-    //Date
-    setDaysRange();
-    selectedDate = daysRange[0];
-    //Time
-    setHoursRange();
+  var _selectedMinute;
+  get selectedMinute => _selectedMinute;
+  set selectedMinute(value) {
+    _selectedMinute = value;
+    notifyListeners();
+  }
+
+  initTime() {
+    if (selectedDate == now.day) {
+      selectedHour = hoursRange.first;
+      selectedMinute = minutesRange.firstWhere(
+        (element) => element > now.minute,
+        orElse: () {
+          selectedHour = hoursRange[1];
+          return minutesRange.first;
+        },
+      );
+    } else {
+      selectedHour = hoursRange.first;
+      selectedMinute = minutesRange.first;
+    }
+    notifyListeners();
   }
 }

@@ -42,6 +42,11 @@ class MainApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           //body text theme
+          bodyLarge: TextStyle(
+            color: RGBColors.lightColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
           bodyMedium: TextStyle(
             color: RGBColors.lightColor,
             fontSize: 18,

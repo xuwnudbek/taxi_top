@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/add_my_ride/provider/add_my_ride_provider.dart';
@@ -15,107 +16,131 @@ class AddMyRide extends StatelessWidget {
     return ChangeNotifierProvider<AddMyRideProvider>(
       create: (context) => AddMyRideProvider(),
       builder: (context, snapshot) {
-        var rider = Provider.of<AddMyRideProvider>(context).rider;
-        var regions = Provider.of<AddMyRideProvider>(context).regions;
-
-        return Scaffold(
-          appBar: AppBarX(
-            title: Text(
-              "add_ride".tr,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //Rider's car image
-                  Container(
-                    decoration: BoxDecoration(
-                      color: RGBColors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    constraints: BoxConstraints(maxHeight: 300),
-                    child: Image.network(
-                      "${rider['car']?['photo']}",
-                      fit: BoxFit.cover,
-                      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: child,
-                        );
-                      },
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        } else {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: CPIndicator(),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                  //Form ride
-                  SizedBox(height: 10),
-                  Container(
-                    child: Consumer<AddMyRideProvider>(builder: (context, provider, _) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //Title
-                          title("ride_details".tr, style: Theme.of(context).textTheme.titleMedium),
-                          title("from".tr),
-                          _buildDropdown(
-                            regions,
-                            onChanged: (value) => provider.from = value,
-                            value: provider.from,
-                          ),
-                          //To
-                          title("to".tr),
-                          _buildDropdown(
-                            regions,
-                            onChanged: (value) => provider.to = value,
-                            value: provider.to,
-                          ),
-                          //Date
-                          title("date".tr),
-                          DatePickerLine(
-                            type: DatePickerLineType.date,
-                            onChanged: (value) {
-                              provider.date = value;
-                            },
-                          ),
-                          //Time
-                          title("time".tr),
-                          DatePickerLine(
-                            type: DatePickerLineType.time,
-                            onChanged: (value) {
-                              provider.time = value;
-                            },
-                          ),
-
-                          //Price
-                          title("price".tr),
-
-                          //Car
-                          title("car".tr),
-
-                          //Seats
-                          title("seats".tr),
-                        ],
-                      );
-                    }),
-                  )
-                ],
+        return Consumer<AddMyRideProvider>(
+          builder: (context, provider, _) {
+            return Scaffold(
+              appBar: AppBarX(
+                title: Text(
+                  "add_ride".tr,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ),
-            ),
-          ),
+              body: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //Rider's car image
+                      Container(
+                        decoration: BoxDecoration(
+                          color: RGBColors.grey,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        constraints: BoxConstraints(maxHeight: 300),
+                        child: Image.network(
+                          "${provider.rider['car']?['photo']}",
+                          fit: BoxFit.cover,
+                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: child,
+                            );
+                          },
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            } else {
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: CPIndicator(),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      //Form ride
+                      SizedBox(height: 10),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            //Title
+                            title("ride_details".tr, style: Theme.of(context).textTheme.titleMedium),
+                            title("from".tr),
+                            _buildRegionDropdown(
+                              provider.regions,
+                              onChanged: (value) => provider.from = value,
+                              value: provider.from,
+                            ),
+                            //To
+                            title("to".tr),
+                            _buildRegionDropdown(
+                              provider.regions,
+                              onChanged: (value) => provider.to = value,
+                              value: provider.to,
+                            ),
+                            //Date
+                            title("date".tr),
+                            DatePickerLine(
+                              onChanged: (value) {
+                                provider.date = value;
+                              },
+                            ),
+
+                            //Price
+                            title("price".tr),
+                            _buildInput(
+                              controller: provider.price,
+                            ),
+                            //Car
+                            title("car".tr),
+
+                            //Seats
+                            // title("seats".tr),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
+    );
+  }
+
+  Widget _buildInput({required TextEditingController controller}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: RGBColors.grey,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: TextFormField(
+        controller: controller,
+        textDirection: TextDirection.rtl,
+        keyboardType: TextInputType.number,
+        textInputAction: TextInputAction.next,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(7),
+        ],
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "price".tr,
+          hintStyle: TextStyle(
+            color: RGBColors.lightColor.withOpacity(0.3),
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          hintTextDirection: TextDirection.rtl,
+        ),
+        cursorColor: RGBColors.lightColor,
+        style: Theme.of(Get.context!).textTheme.bodyMedium,
+      ),
     );
   }
 
@@ -128,7 +153,7 @@ class AddMyRide extends StatelessWidget {
     );
   }
 
-  Widget _buildDropdown(List<String> regions, {required Function onChanged, required value}) {
+  Widget _buildRegionDropdown(List<String> regions, {required Function onChanged, required value}) {
     return DropdownButton(
       dropdownColor: RGBColors.primaryColor,
       isExpanded: true,

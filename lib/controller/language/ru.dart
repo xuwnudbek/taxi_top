@@ -12,7 +12,7 @@ const Map<String, String> ru = {
   "all": "Все",
 
   //Add My Ride Page
-  "ride_details": "Ride details",
+  "ride_details": "Детали поездки",
 
   //About Ride Page
   "about_ride": "О поездке",

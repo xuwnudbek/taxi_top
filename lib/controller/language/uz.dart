@@ -12,7 +12,7 @@ const Map<String, String> uz = {
   "all": "Hammasi",
 
   //Add My Ride Page
-  "ride_details": "Ride details",
+  "ride_details": "Safar ma'lumotlari",
 
   //About Ride Page
   "about_ride": "Safar haqida",
