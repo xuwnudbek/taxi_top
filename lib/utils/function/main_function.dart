@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MainFunc {
@@ -7,8 +8,5 @@ class MainFunc {
     var urlLauncher = launchUrlString("tel:${phone}");
   }
 
-  String numberToPrice(int price) {
-    String priceString = price.toString();
-    return NumberFormat("#,###").format(priceString);
-  }
+ 
 }

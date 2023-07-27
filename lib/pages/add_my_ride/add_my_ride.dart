@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/add_my_ride/provider/add_my_ride_provider.dart';
 import 'package:taxi_top/utils/cp_indicator.dart';
+import 'package:taxi_top/utils/function/main_function.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
 import 'package:taxi_top/utils/widgets/appbar_x.dart';
 import 'package:taxi_top/utils/widgets/date_picker_line/date_picker_line.dart';
+
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class AddMyRide extends StatelessWidget {
   const AddMyRide({super.key});
@@ -93,11 +98,9 @@ class AddMyRide extends StatelessWidget {
                             _buildInput(
                               controller: provider.price,
                             ),
-                            //Car
-                            title("car".tr),
-
-                            //Seats
-                            // title("seats".tr),
+                            // Seats
+                            title("seats".tr),
+                            _selectSeat(),
                           ],
                         ),
                       ),
@@ -112,7 +115,13 @@ class AddMyRide extends StatelessWidget {
     );
   }
 
-  Widget _buildInput({required TextEditingController controller}) {
+  Widget _selectSeat() {
+    return BottomSheetX(seats: 5);
+  }
+
+  Widget _buildInput({
+    required TextEditingController controller,
+  }) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -121,12 +130,14 @@ class AddMyRide extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
         controller: controller,
-        textDirection: TextDirection.rtl,
+        // textDirection: TextDirection.rtl,
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
         inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-          LengthLimitingTextInputFormatter(7),
+          MaskTextInputFormatter(
+            mask: "### ###",
+            type: MaskAutoCompletionType.lazy,
+          ),
         ],
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -136,7 +147,7 @@ class AddMyRide extends StatelessWidget {
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
-          hintTextDirection: TextDirection.rtl,
+          // hintTextDirection: TextDirection.rtl,
         ),
         cursorColor: RGBColors.lightColor,
         style: Theme.of(Get.context!).textTheme.bodyMedium,
@@ -166,6 +177,62 @@ class AddMyRide extends StatelessWidget {
               ))
           .toList(),
       onChanged: (value) => onChanged(value),
+    );
+  }
+}
+
+class BottomSheetX extends StatelessWidget {
+  BottomSheetX({super.key, this.seats = 4});
+  int seats;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget _buildSeat(int index) {
+      return Container(
+        height: 100,
+        decoration: BoxDecoration(
+          color: RGBColors.grey,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            "${index + 1}",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      width: Get.width,
+      height: Get.height * 0.4,
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: RGBColors.lightColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          StaggeredGrid.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            children: [
+              _buildSeat(0),
+              _buildSeat(1),
+            ],
+          ),
+          SizedBox(height: 10),
+          StaggeredGrid.count(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            children: [
+              _buildSeat(2),
+              _buildSeat(3),
+              _buildSeat(4),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
