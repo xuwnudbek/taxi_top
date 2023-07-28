@@ -11,7 +11,7 @@ class CPIndicator extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: RGBColors.grey,
+        color: RGBColors.grey.withOpacity(0.7),
       ),
       child: Container(
         alignment: Alignment.center,

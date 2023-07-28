@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
-  MainButton(
-    this.title, {
+  MainButton({
     super.key,
-    required this.child,
+    this.child,
     required this.onTap,
     this.height = 50,
+    this.color,
+    this.margin = const EdgeInsets.all(10),
   });
 
+  EdgeInsets margin;
+  Color? color;
   Function onTap;
   String? title;
-  Widget child;
+  Widget? child;
   double height;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      margin: EdgeInsets.all(10),
+      margin: margin,
       child: MaterialButton(
         onPressed: () => onTap(),
         shape: RoundedRectangleBorder(
@@ -25,20 +29,8 @@ class MainButton extends StatelessWidget {
         ),
         elevation: 5,
         height: height,
-        color: Theme.of(context).cardTheme.color,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: title != null
-                  ? Text(
-                      title!,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )
-                  : child,
-            ),
-          ],
-        ),
+        color: color ?? Theme.of(context).cardTheme.color,
+        child: child,
       ),
     );
   }

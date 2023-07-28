@@ -1,105 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:taxi_top/pages/about_ride/about_ride.dart';
 import 'package:taxi_top/pages/home/views/rides/provider/rides_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
+import 'package:taxi_top/utils/widgets/cards/main_ride_card.dart';
+import 'package:taxi_top/utils/widgets/main_dropdown.dart';
 
 class RidesPage extends StatelessWidget {
   const RidesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RidesProvider>(
-      create: (context) => RidesProvider(),
-      builder: (context, snapshot) {
-        return Consumer<RidesProvider>(
-          builder: (context, ridesProvider, _) {
-            return Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: ridesProvider.rideList
-                      .map((e) => _buildRideCard(e))
-                      .toList(),
+    return Consumer<RidesProvider>(
+      builder: (context, provider, _) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "from_here".tr + ":",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  MainDropdown(
+                    categories: provider.regions,
+                    value: provider.regionId,
+                    onChange: (value) {
+                      provider.changeRegion = value;
+                    },
+                  ),
+                ],
+              ),
+              Expanded(
+                child: RefreshIndicator(
+                  edgeOffset: 7,
+                  displacement: 7,
+                  onRefresh: () async {
+                    await provider.refresh();
+                  },
+                  child: _buildRideList(provider.rideList),
                 ),
               ),
-            );
-          },
+            ],
+          ),
         );
       },
     );
   }
 
-  Widget _buildRideCard(ride) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: RGBColors.grey,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+  Widget _buildRideList(List<Map<String, dynamic>> rideList) {
+    return ListView(
+      children: [
+        for (var ride in rideList)
+          GestureDetector(
+            onTap: () => Get.to(
+              () => AboutRide(ride["id"]),
+              transition: Transition.native,
+              duration: Duration(milliseconds: 300),
             ),
-            child: Image.network(
-              ride['rider']['car']['photo'],
-              fit: BoxFit.cover,
-              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
-                  ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: child,
-              ),
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                    color: RGBColors.lightColor,
-                  ),
-                );
-              },
+            child: MainRideCard(
+              ride: ride,
             ),
           ),
-          SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '⛳️ ${ride['from']} - ${ride['to']}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  '💰 ${ride['price']} so\'m',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  '🕓 Bugun: ${ride['time']}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      ],
     );
   }
 }

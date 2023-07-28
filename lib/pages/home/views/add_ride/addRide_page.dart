@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:taxi_top/pages/about_my_ride/about_my_ride.dart';
+import 'package:taxi_top/pages/about_ride/about_ride.dart';
 import 'package:taxi_top/pages/add_my_ride/add_my_ride.dart';
 import 'package:taxi_top/pages/home/views/add_ride/provider/addRide_provider.dart';
 import 'package:taxi_top/utils/rgb_colors.dart';
@@ -17,80 +17,78 @@ class AddRide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var rideList = Provider.of<AddRideProvider>(context).rideList;
-    var categories = Provider.of<AddRideProvider>(context).categories;
+    return Consumer<AddRideProvider>(builder: (ctx, provider, _) {
+      var rideList = provider.rideList;
+      var categories = provider.categories;
 
-    return Container(
-      padding: EdgeInsets.all(15),
-      child: Flex(
-        direction: Axis.vertical,
-        children: [
-          //Add Ride Buttton
-          MainButton(
-            'add_ride'.tr,
-            height: 80,
-            child: Container(
-              width: Get.width * 0.8,
-              child: SvgPicture.asset(
-                'assets/images/add.svg',
-                width: 50,
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-              ),
-            ),
-            onTap: () {
-              Get.to(() => AddMyRide());
-            },
-          ),
-          //Show my ride list
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Column(
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            //Add Ride Buttton
+            MainButton(
+              height: 80,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text("my_rides".tr),
-                        Consumer<AddRideProvider>(
-                            builder: (context, provider, _) {
-                          return _dropDown(
+                  Text(
+                    "add_ride".tr,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+              onTap: () async {
+                var res = await Get.to(() => AddMyRide());
+                if (res ?? false) {
+                  await provider.refresh();
+                }
+              },
+            ),
+            //Show my ride list
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text("my_rides".tr),
+                          _dropDown(
                             categories,
                             value: provider.categoryIndex,
                             onChange: (e) {
                               provider.changeCategory = e;
                             },
-                          );
-                        }),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 9,
-                    child: Consumer<AddRideProvider>(
-                        builder: (context, provider, _) {
-                      return RefreshIndicator(
+                    Expanded(
+                      flex: 9,
+                      child: RefreshIndicator(
                         displacement: 7,
                         child: _buildRideList(rideList),
                         onRefresh: () async {
                           await provider.refresh();
                         },
-                      );
-                    }),
-                  ),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 
-  DropdownButton _dropDown(List<String> categories,
-      {required int value, required Function onChange}) {
+  DropdownButton _dropDown(List<String> categories, {required int value, required Function onChange}) {
     return DropdownButton(
       borderRadius: BorderRadius.circular(10),
       dropdownColor: RGBColors.grey,
@@ -120,18 +118,20 @@ class AddRide extends StatelessWidget {
   }
 
   _buildRideList(List<Map<String, dynamic>> rideList) {
-    return ListView(children: [
-      for (var ride in rideList)
-        GestureDetector(
-          onTap: () => Get.to(
-            () => AboutRide(ride["id"]),
-            transition: Transition.native,
-            duration: Duration(milliseconds: 300),
+    return ListView(
+      children: [
+        for (var ride in rideList)
+          GestureDetector(
+            onTap: () => Get.to(
+              () => AboutRide(ride["id"]),
+              transition: Transition.native,
+              duration: Duration(milliseconds: 300),
+            ),
+            child: MainRideCard(
+              ride: ride,
+            ),
           ),
-          child: MainRideCard(
-            ride: ride,
-          ),
-        ),
-    ]);
+      ],
+    );
   }
 }

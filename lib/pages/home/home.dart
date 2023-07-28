@@ -17,14 +17,13 @@ class Home extends StatelessWidget {
             : AppBarX(
                 title: Text(
                   '${homeProvider.titles[homeProvider.currentIndex]}',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 isCenter: true,
                 haveBack: false,
               ),
-        body: SafeArea(
-          child: homeProvider.pages[homeProvider.currentIndex],
-        ),
+        body: homeProvider.pages[homeProvider.currentIndex],
+        extendBody: true,
         bottomNavigationBar: CustomNavbar(),
       );
     });

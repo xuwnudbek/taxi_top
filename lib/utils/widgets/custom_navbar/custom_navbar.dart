@@ -20,8 +20,11 @@ class CustomNavbar extends StatelessWidget {
           ),
           // padding: EdgeInsets.symmetric(vertical: 10),
           child: Row(
-            children:
-                provider.buttons.map((button) => _buildButton(button)).toList(),
+            children: provider.buttons
+                .map(
+                  (button) => _buildButton(button),
+                )
+                .toList(),
           ),
         ),
       );
@@ -34,12 +37,11 @@ class CustomNavbar extends StatelessWidget {
     return Consumer<HomeProvider>(builder: (ctx, homeProvider, _) {
       return Expanded(
         child: Container(
+          height: 60,
           margin: EdgeInsets.all(5),
           padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-            color: homeProvider.currentIndex == value
-                ? RGBColors.lightColor
-                : RGBColors.transparent,
+            color: homeProvider.currentIndex == value ? RGBColors.lightColor : RGBColors.transparent,
             borderRadius: BorderRadius.circular(18),
           ),
           child: MaterialButton(

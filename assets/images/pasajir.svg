@@ -1,0 +1,27 @@
+<svg width="300" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Mashina tasma -->
+    <rect width="250" height="100" x="25" y="50" rx="15" ry="15" fill="gray" />
+
+    <!-- Mashina yorug'i -->
+    <rect width="200" height="60" x="50" y="80" rx="10" ry="10" fill="lightgray" />
+
+    <!-- Oynalar -->
+    <circle cx="70" cy="140" r="15" fill="black" />
+    <circle cx="110" cy="140" r="15" fill="black" />
+    <circle cx="150" cy="140" r="15" fill="black" />
+    <circle cx="190" cy="140" r="15" fill="black" />
+
+    <!-- Kuzov -->
+    <rect width="160" height="40" x="70" y="40" rx="10" ry="10" fill="blue" />
+
+    <!-- Palto -->
+    <path d="M70 40 L150 20 L230 40" fill="blue" />
+
+    <!-- Olamcha -->
+    <circle cx="110" cy="80" r="20" fill="black" />
+    <circle cx="190" cy="80" r="20" fill="black" />
+
+    <!-- Yo'l -->
+    <path d="M0 150 L300 150" stroke="black" stroke-width="10" />
+
+</svg>

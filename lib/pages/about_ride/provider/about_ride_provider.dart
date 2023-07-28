@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AboutMyRideProvider extends ChangeNotifier {
+class AboutRideProvider extends ChangeNotifier {
   List<Map<String, dynamic>> rideList = [
     {
       "id": 1,
@@ -9,8 +9,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "10:00",
       "price": 100000,
       "seats": 4,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -25,8 +24,7 @@ class AboutMyRideProvider extends ChangeNotifier {
           "name": "Lacetti 3",
           "number": "01 A 123 AA",
           "year": 2015,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
@@ -37,8 +35,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "12:00",
       "price": 100000,
       "seats": 4,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -52,8 +49,7 @@ class AboutMyRideProvider extends ChangeNotifier {
           "color": "Oq",
           "number": "01 A 123 AA",
           "year": 2015,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
@@ -64,8 +60,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "14:00",
       "price": 100000,
       "seats": 4,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -79,8 +74,7 @@ class AboutMyRideProvider extends ChangeNotifier {
           "color": "Oq",
           "number": "01 A 123 AA",
           "year": 2015,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
@@ -91,8 +85,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "22:00",
       "price": 100000,
       "seats": 4,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -106,8 +99,7 @@ class AboutMyRideProvider extends ChangeNotifier {
           "color": "Oq",
           "number": "01 A 123 AA",
           "year": 2015,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
@@ -118,8 +110,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "01:00",
       "price": 200000,
       "seats": 2,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -133,8 +124,7 @@ class AboutMyRideProvider extends ChangeNotifier {
           "color": "Oq",
           "number": "01 A 123 AA",
           "year": 2015,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
@@ -145,8 +135,7 @@ class AboutMyRideProvider extends ChangeNotifier {
       "time": "03:00",
       "price": 170000,
       "seats": 3,
-      "date":
-          "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
+      "date": "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
       "rider": {
         "id": 1,
         "name": "Abdulaziz",
@@ -160,22 +149,21 @@ class AboutMyRideProvider extends ChangeNotifier {
           "color": "Oq",
           "number": "01 A 987 AA",
           "year": 2021,
-          "photo":
-              "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+          "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
         },
       }
     },
   ];
-
   Map<String, dynamic> ride = {};
-
-  int rideId;
   bool isLoading = false;
+  int rideId;
 
-  AboutMyRideProvider(this.rideId) {
+  //Default Constructors
+  AboutRideProvider(this.rideId) {
     getRide(rideId);
   }
 
+  //Main Functions
   getRide(int id) async {
     isLoading = true;
     notifyListeners();

@@ -31,6 +31,11 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: RGBColors.primaryColor,
         textTheme: TextTheme(
           //title text theme
+          titleLarge: TextStyle(
+            color: RGBColors.secondaryColor,
+            fontSize: 26,
+            fontWeight: FontWeight.w700,
+          ),
           titleMedium: TextStyle(
             color: RGBColors.secondaryColor,
             fontSize: 22,
@@ -60,10 +65,10 @@ class MainApp extends StatelessWidget {
         ),
         cardTheme: CardTheme(
           color: RGBColors.grey,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+          // elevation: 0,
+          // shape: RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(10),
+          // ),
         ),
       ),
       home: MultiProvider(

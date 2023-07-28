@@ -4,6 +4,14 @@ const Map<String, String> uz = {
   "add_ride": "Safar qo'shish",
   "profile": "Profil",
 
+  //About Rider
+  "name": "Ism",
+  "surname": "Familiya",
+  "phone": "Telefon",
+  "order_ride": "Joy band qilish",
+  //Rides Page
+  "from_here": "Qayerdan",
+
   //Add Ride Page
   "my_rides": "Mening safarlarim",
   "today": "Bugun",
@@ -12,7 +20,27 @@ const Map<String, String> uz = {
   "all": "Hammasi",
 
   //Add My Ride Page
+  "add": "Qo'shish",
   "ride_details": "Safar ma'lumotlari",
+  "ta": " ta",
+  "select_date": "Sanani tanlash",
+  "select_time": "Vaqtni tanlash",
+  "choose": "Tanlash",
+  "cancel": "Bekor qilish",
+
+  "success": "Muvaffaqiyatli",
+  "warning": "Ogohlantirish",
+  "error": "Xatolik",
+
+  "successfully_added": "Sizning safaringiz muvaffaqiyatli qo'shildi",
+
+  //Selection errors
+  "select_from_error": "Safar boshlanish joyini tanlang",
+  "select_to_error": "Safar tugash joyini tanlang",
+  "select_date_error": "Sanani tanlang",
+  "select_time_error": "Vaqtni tanlang",
+  "select_price_error": "Narxni kiriting",
+  "select_seats_error": "Kamida 1 ta o'rindiq tanlang",
 
   //About Ride Page
   "about_ride": "Safar haqida",

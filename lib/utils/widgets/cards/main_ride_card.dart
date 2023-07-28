@@ -10,7 +10,7 @@ class MainRideCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: RGBColors.grey,
         borderRadius: BorderRadius.circular(25),
@@ -19,7 +19,7 @@ class MainRideCard extends StatelessWidget {
         children: [
           Container(
             width: 100,
-            height: 100,
+            height: 90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -28,8 +28,7 @@ class MainRideCard extends StatelessWidget {
               child: Image.network(
                 ride['rider']['car']['photo'],
                 fit: BoxFit.cover,
-                frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
-                    ClipRRect(
+                frameBuilder: (context, child, frame, wasSynchronouslyLoaded) => ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: child,
                 ),
@@ -37,10 +36,7 @@ class MainRideCard extends StatelessWidget {
                   if (loadingProgress == null) return child;
                   return Center(
                     child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
+                      value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
                       color: RGBColors.secondaryColor,
                     ),
                   );
