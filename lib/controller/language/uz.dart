@@ -9,6 +9,8 @@ const Map<String, String> uz = {
   "surname": "Familiya",
   "phone": "Telefon",
   "order_ride": "Joy band qilish",
+  "select_seat": "O'rindiq tanlash",
+
   //Rides Page
   "from_here": "Qayerdan",
 

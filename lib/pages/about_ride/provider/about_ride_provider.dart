@@ -158,6 +158,23 @@ class AboutRideProvider extends ChangeNotifier {
   bool isLoading = false;
   int rideId;
 
+  //Seats statuses
+  var _seatsStatus = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+  };
+  get seatsStatus => _seatsStatus;
+
+  var selectedSeat;
+  var _isSingle = true;
+  get isSingle => _isSingle;
+  set isSingle(value) {
+    _isSingle = value;
+    notifyListeners();
+  }
+
   //Default Constructors
   AboutRideProvider(this.rideId) {
     getRide(rideId);

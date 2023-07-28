@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_top/pages/about_ride/provider/about_ride_provider.dart';
@@ -216,13 +217,27 @@ class AboutRide extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10),
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.0),
-                            child: Row(
-                              children: [
-                                Text("select_seat".tr),
-                              ],
-                            ),
+                          //Select Seat
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 5.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("select_seat".tr),
+                                    _buildSliderButton(
+                                      provider.isSingle,
+                                      onChange: (value) {
+                                        provider.isSingle = value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              CarSeats(provider: provider),
+                            ],
                           ),
                           SizedBox(height: 150),
                         ],
@@ -235,9 +250,190 @@ class AboutRide extends StatelessWidget {
     );
   }
 
+  Widget _buildSliderButton(bool isSingle, {required Function onChange}) {
+    return GestureDetector(
+      onTap: () {
+        onChange(!isSingle);
+      },
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 70),
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: RGBColors.lightColor,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: AnimatedAlign(
+          alignment: isSingle ? Alignment.centerLeft : Alignment.centerRight,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+          child: SvgPicture.asset(
+            "assets/images/${isSingle ? "man" : "mans"}.svg",
+            color: RGBColors.grey,
+            width: 25,
+          ),
+          // mainAxisAlignment: isSingle ? MainAxisAlignment.start : MainAxisAlignment.end,
+          // children: [
+
+          // ],
+        ),
+      ),
+    );
+  }
+
   Divider _customDivider() {
     return Divider(
       color: RGBColors.primaryColor,
+    );
+  }
+}
+
+class CarSeats extends StatelessWidget {
+  AboutRideProvider provider;
+
+  CarSeats({
+    super.key,
+    required this.provider,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    //Front seats
+    Widget _buildFrontSeat(int index, {required Widget child}) {
+      return GestureDetector(
+        onTap: () {
+          if (index == 0) return;
+          print(provider.seatsStatus);
+        },
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: RGBColors.grey,
+            borderRadius: BorderRadius.only(
+              topLeft: index == 0 ? Radius.circular(70) : Radius.circular(20),
+              topRight: index == 1 ? Radius.circular(70) : Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+          child: Center(
+            child: child,
+          ),
+        ),
+      );
+    }
+
+    //Back seats
+    Widget _buildBackSeat(int index, {required Widget child}) {
+      return GestureDetector(
+        onTap: () {
+          var seat = provider.seatsStatus[index];
+          if (seat == null) {}
+        },
+        child: Container(
+          height: 100,
+          margin: EdgeInsets.only(left: 2, right: 2),
+          decoration: BoxDecoration(
+            color: RGBColors.grey,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Center(
+            child: child,
+          ),
+        ),
+      );
+    }
+
+    //
+    return Container(
+      width: Get.width * 0.5,
+      padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+      decoration: BoxDecoration(
+        color: RGBColors.lightColor,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(80),
+          bottom: Radius.circular(30),
+        ),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: _buildFrontSeat(
+                  0,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/images/rider.png",
+                        width: 70,
+                      ),
+                      Positioned(
+                        bottom: -25,
+                        child: Image.asset(
+                          "assets/images/wheel.png",
+                          width: 50,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Expanded(
+                child: _buildFrontSeat(
+                  1,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/images/passenger.png",
+                        width: 50,
+                      ),
+                      Positioned(
+                        child: SvgPicture.asset(
+                          "assets/images/${provider.seatsStatus[1] ?? false ? "check" : "cross"}.svg",
+                          color: provider.seatsStatus[1] ?? false ? Colors.green : Colors.red,
+                          width: 30,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              for (int i = 2; i < provider.seatsStatus.length + 1; i++) ...[
+                Expanded(
+                  child: _buildBackSeat(
+                    i,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/passenger.png",
+                          width: 50,
+                        ),
+                        Positioned(
+                          child: SvgPicture.asset(
+                            "assets/images/${provider.seatsStatus[i] ?? false ? "check" : "cross"}.svg",
+                            color: provider.seatsStatus[i] ?? false ? Colors.green : Colors.red,
+                            width: 30,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
