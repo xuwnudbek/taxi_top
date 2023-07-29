@@ -20,232 +20,258 @@ class AboutRide extends StatelessWidget {
     return ChangeNotifierProvider<AboutRideProvider>(
       create: (context) => AboutRideProvider(rideId),
       builder: (context, snapshot) {
-        return Consumer<AboutRideProvider>(builder: (context, provider, _) {
-          var isLoading = provider.isLoading;
-          var ride = provider.ride;
+        return Consumer<AboutRideProvider>(
+          builder: (context, provider, _) {
+            var isLoading = provider.isLoading;
+            var ride = provider.ride;
 
-          return isLoading
-              ? CPIndicator()
-              : Scaffold(
-                  appBar: AppBarX(
-                    title: Text(
-                      "${ride['from']} - ${ride['to']}",
-                      style: Theme.of(context).textTheme.titleMedium,
+            return isLoading
+                ? CPIndicator()
+                : Scaffold(
+                    appBar: AppBarX(
+                      title: Text(
+                        "${ride['from']} - ${ride['to']}",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      isCenter: true,
                     ),
-                    isCenter: true,
-                  ),
-                  extendBody: true,
-                  bottomNavigationBar: MainButton(
-                    margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                    color: RGBColors.secondaryColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "order_ride".tr,
-                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                color: RGBColors.lightColor,
-                              ),
-                        ),
-                      ],
-                    ),
-                    onTap: () async {
-                      print("Buyurtma berildi");
-                    },
-                  ),
-                  body: SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-                      child: Column(
+                    extendBody: true,
+                    bottomNavigationBar: MainButton(
+                      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                      color: RGBColors.secondaryColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //Image later may be with slider
-                          Container(
-                            decoration: BoxDecoration(
-                              color: RGBColors.grey,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            constraints: BoxConstraints(maxHeight: 300),
-                            child: Image.network(
-                              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: child,
-                                );
-                              },
-                              loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) {
-                                  return child;
-                                } else {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CPIndicator(),
-                                  );
-                                }
-                              },
-                              "${ride['rider']['car']['photo']}",
-                              fit: BoxFit.cover,
-                            ),
+                          Text(
+                            "order_ride".tr,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: RGBColors.lightColor,
+                                ),
                           ),
-                          SizedBox(height: 10),
-                          //About Rider
-                          Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.0),
-                                child: Row(
-                                  children: [
-                                    Text("about_rider".tr),
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () => Get.to(
-                                  () => AboutRider(rider: ride['rider']),
-                                  transition: Transition.native,
-                                  duration: Duration(milliseconds: 300),
-                                ),
-                                child: MainRiderCard(
-                                  isAsset: ride['rider']['photo'] == null ? true : false,
-                                  elevation: 0,
-                                  rider: ride['rider'],
-                                  size: Size(Get.width, 100),
-                                  padding: EdgeInsets.all(5),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          //About Ride
-                          Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.0),
-                                child: Row(
-                                  children: [
-                                    Text("about_ride".tr),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: RGBColors.grey,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "from".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['from']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "to".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['to']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "date".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['date']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "time".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['time']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "price".tr + " (so'm)",
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['price']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "seats".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['seats']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "car".tr,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                        Spacer(),
-                                        Text("${ride['rider']['car']['model']}"),
-                                      ],
-                                    ),
-                                    _customDivider(),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          //Select Seat
-                          Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("select_seat".tr),
-                                    _buildSliderButton(
-                                      provider.isSingle,
-                                      onChange: (value) {
-                                        provider.isSingle = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              CarSeats(provider: provider),
-                            ],
-                          ),
-                          SizedBox(height: 150),
                         ],
                       ),
+                      onTap: () async {
+                        print("Buyurtma berildi");
+                      },
                     ),
-                  ),
-                );
-        });
+                    body: SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 10),
+                        child: Column(
+                          children: [
+                            //Image later may be with slider
+                            Container(
+                              decoration: BoxDecoration(
+                                color: RGBColors.grey,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              constraints: BoxConstraints(maxHeight: 300),
+                              child: Image.network(
+                                frameBuilder: (context, child, frame,
+                                    wasSynchronouslyLoaded) {
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: child,
+                                  );
+                                },
+                                loadingBuilder:
+                                    (context, child, loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  } else {
+                                    return ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: CPIndicator(),
+                                    );
+                                  }
+                                },
+                                "${ride['rider']['car']['photo']}",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            //About Rider
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5.0),
+                                  child: Row(
+                                    children: [
+                                      Text("about_rider".tr),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () => Get.to(
+                                    () => AboutRider(rider: ride['rider']),
+                                    transition: Transition.native,
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                  child: MainRiderCard(
+                                    isAsset: ride['rider']['photo'] == null
+                                        ? true
+                                        : false,
+                                    elevation: 0,
+                                    rider: ride['rider'],
+                                    size: Size(Get.width, 100),
+                                    padding: EdgeInsets.all(5),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            //About Ride
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5.0),
+                                  child: Row(
+                                    children: [
+                                      Text("about_ride".tr),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: RGBColors.grey,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "from".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['from']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "to".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['to']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "date".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['date']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "time".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['time']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "price".tr + " (so'm)",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['price']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "seats".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text("${ride['seats']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "car".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                          ),
+                                          Spacer(),
+                                          Text(
+                                              "${ride['rider']['car']['model']}"),
+                                        ],
+                                      ),
+                                      _customDivider,
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            //Select Seat
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("select_seat".tr),
+                                      _buildSliderButton(
+                                        provider.isSingle,
+                                        onChange: (value) {
+                                          provider.isSingle = value;
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                CarSeats(provider: provider),
+                              ],
+                            ),
+                            SizedBox(height: 150),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+        );
       },
     );
   }
@@ -280,11 +306,9 @@ class AboutRide extends StatelessWidget {
     );
   }
 
-  Divider _customDivider() {
-    return Divider(
-      color: RGBColors.primaryColor,
-    );
-  }
+  Divider _customDivider = Divider(
+    color: RGBColors.primaryColor,
+  );
 }
 
 class CarSeats extends StatelessWidget {
@@ -302,6 +326,7 @@ class CarSeats extends StatelessWidget {
       return GestureDetector(
         onTap: () {
           if (index == 0) return;
+
           print(provider.seatsStatus);
         },
         child: Container(
@@ -315,8 +340,16 @@ class CarSeats extends StatelessWidget {
               bottomRight: Radius.circular(20),
             ),
           ),
-          child: Center(
-            child: child,
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: index == 0 ? Radius.circular(70) : Radius.circular(20),
+              topRight: index == 1 ? Radius.circular(70) : Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+            child: Center(
+              child: child,
+            ),
           ),
         ),
       );
@@ -327,7 +360,10 @@ class CarSeats extends StatelessWidget {
       return GestureDetector(
         onTap: () {
           var seat = provider.seatsStatus[index];
-          if (seat == null) {}
+          if (!seat) {
+            provider.selectedSeat = {index: true};
+            print(provider.selectedSeat);
+          }
         },
         child: Container(
           height: 100,
@@ -336,14 +372,24 @@ class CarSeats extends StatelessWidget {
             color: RGBColors.grey,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Center(
-            child: child,
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: index == 0 ? Radius.circular(70) : Radius.circular(20),
+              topRight: index == 1 ? Radius.circular(70) : Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+            child: Center(
+              child: child,
+            ),
           ),
         ),
       );
     }
 
-    //
+    //Color
+    Color color(bool active) => active ? RGBColors.success : RGBColors.grey;
+
     return Container(
       width: Get.width * 0.5,
       padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
@@ -390,11 +436,17 @@ class CarSeats extends StatelessWidget {
                         "assets/images/passenger.png",
                         width: 50,
                       ),
-                      Positioned(
-                        child: SvgPicture.asset(
-                          "assets/images/${provider.seatsStatus[1] ?? false ? "check" : "cross"}.svg",
-                          color: provider.seatsStatus[1] ?? false ? Colors.green : Colors.red,
-                          width: 30,
+                      Opacity(
+                        opacity: 0.5,
+                        child: Container(
+                          color: RGBColors.grey,
+                          child: SvgPicture.asset(
+                            "assets/images/${provider.seatsStatus[1] ? 'checked' : 'unchecked'}.svg",
+                            colorFilter: ColorFilter.mode(
+                              color(provider.seatsStatus[1]),
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -421,7 +473,9 @@ class CarSeats extends StatelessWidget {
                         Positioned(
                           child: SvgPicture.asset(
                             "assets/images/${provider.seatsStatus[i] ?? false ? "check" : "cross"}.svg",
-                            color: provider.seatsStatus[i] ?? false ? Colors.green : Colors.red,
+                            color: provider.seatsStatus[i] ?? false
+                                ? Colors.green
+                                : Colors.red,
                             width: 30,
                           ),
                         ),

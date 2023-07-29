@@ -72,17 +72,18 @@ class MainApp extends StatelessWidget {
         ),
       ),
       home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context) => HomeProvider()),
-            ChangeNotifierProvider(create: (context) => NavbarProvider()),
-            //views
-            ChangeNotifierProvider(create: (context) => RidesProvider()),
-            ChangeNotifierProvider(create: (context) => AddRideProvider()),
-            ChangeNotifierProvider(create: (context) => ProfileProvider()),
-          ],
-          builder: (context, snapshot) {
-            return Home();
-          }),
+        providers: [
+          ChangeNotifierProvider(create: (context) => HomeProvider()),
+          ChangeNotifierProvider(create: (context) => NavbarProvider()),
+          //views
+          ChangeNotifierProvider(create: (context) => RidesProvider()),
+          ChangeNotifierProvider(create: (context) => AddRideProvider()),
+          ChangeNotifierProvider(create: (context) => ProfileProvider()),
+        ],
+        builder: (context, snapshot) {
+          return Home();
+        },
+      ),
     );
   }
 }
