@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddRideProvider extends ChangeNotifier {
+  Map<String, dynamic> rider = {
+    "id": 1,
+    "name": "Abdulaziz",
+    "surname": "Abdulazizov",
+    "phone": "+998 99 999 99 99",
+    "star": 3.5,
+    "photo": null,
+    "is_rider": false,
+    "car": {
+      "id": 1,
+      "model": "Nexi 3",
+      "color": "Oq",
+      "number": "01 A 987 AA",
+      "year": 2021,
+      "photo": "https://www.autostrada.uz/wp-content/uploads/2018/02/Chevrolet-Nexia-R3-Baklazhan-880x587.jpg",
+    },
+  };
+
   List<Map<String, dynamic>> rideList = [
     {
       "id": 1,

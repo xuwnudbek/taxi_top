@@ -21,6 +21,8 @@ const Map<String, String> uz = {
   "this_month": "Bu oy",
   "all": "Hammasi",
 
+  "un_authorized": "Autorizatsiyadan o'tmagan",
+
   //Add My Ride Page
   "add": "Qo'shish",
   "ride_details": "Safar ma'lumotlari",

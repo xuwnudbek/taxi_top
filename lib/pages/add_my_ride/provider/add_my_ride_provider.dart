@@ -12,6 +12,7 @@ class AddMyRideProvider extends ChangeNotifier {
     "phone": "+998 99 999 99 99",
     "star": 3.5,
     "photo": null,
+    "is_rider": false,
     "car": {
       "id": 1,
       "model": "Nexi 3",

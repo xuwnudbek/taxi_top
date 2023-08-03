@@ -10,39 +10,48 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
+    return Column(
       children: [
-        Positioned(
-          top: Get.width * -0.85,
-          child: Container(
-            width: Get.width * 1.3,
-            child: CircleAvatar(
-              backgroundColor: RGBColors.grey,
-              maxRadius: Get.width * 0.7,
-            ),
+        Container(
+          height: Get.height * 0.2,
+          color: Colors.white,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Positioned(
+                top: -Get.width,
+                child: Container(
+                  width: Get.width,
+                  child: CircleAvatar(
+                    backgroundColor: RGBColors.primaryColor,
+                    maxRadius: Get.width,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: Get.width * 0.33,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset(
+                      "assets/images/person.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        Positioned(
-          top: Get.width * 0.25,
-          child: Container(
-            constraints: BoxConstraints(
-              maxWidth: Get.width * 0.9,
-              maxHeight: Get.height * 0.8,
-            ),
-            child: Column(
-              children: [
-                _header(),
-                SizedBox(height: 20),
-                _body(),
-              ],
-            ),
-          ),
+        Column(
+          children: [],
         ),
       ],
     );
   }
 
+  //This is a header for profile
   Widget _header() {
     return Container(
       alignment: Alignment.topCenter,
@@ -85,6 +94,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  //This is body for profile
   Widget _body() {
     return Expanded(
       child: Column(
